@@ -1,27 +1,17 @@
 call plug#begin('~/.config/nvim/plugged')
+
 Plug 'morhetz/gruvbox'
-Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'liuchengxu/vim-which-key'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-Plug 'norcalli/nvim-colorizer.lua'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'dense-analysis/ale'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdcommenter'
+Plug 'https://github.com/tc50cal/vim-terminal'
+
 call plug#end()
 
 colorscheme gruvbox
 
 imap jj <ESC>
-map <silent> <C-n> :NERDTreeFocus<CR>
-map <silent> <C-p> :Files<CR>
-map <silent> <C-h> :History<CR>
-nnoremap <silent> <C-m> :RnvimrToggle<CR>
+map <silent> <A-1> :NERDTree<CR>
+map <silent> <A-2> :TerminalSplit zsh<CR>
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
@@ -55,5 +45,9 @@ set nowritebackup
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
+set number
+set relativenumber
+set smarttab
 
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
+inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
